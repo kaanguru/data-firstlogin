@@ -27,7 +27,6 @@
               returnKeyType="done"
             ></TextField>
           </StackLayout>
-
         </GridLayout>
         <Button text="enter" @tap="enterToSystem" class="m-t-20"></Button>
       </StackLayout>
@@ -36,6 +35,10 @@
 </template>
 
 <script lang="ts">
+import * as ApplicationSettings from "tns-core-modules/application-settings";
+import { request } from "tns-core-modules/http";
+import welcome from "./welcome.vue";
+
 export default {
   data() {
     return {
@@ -44,6 +47,38 @@ export default {
         password: "123123",
       },
     };
+  },
+  methods: {
+    enterToSystem() {
+      // clear token to prevent errors (if malformed)
+      ApplicationSettings.remove("token");
+      ApplicationSettings.remove("userID");
+      ApplicationSettings.remove("userData");
+      request({
+        url: "https://sebapi.com/auth/local",
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        content: JSON.stringify({
+          identifier: this.user.identifier,
+          password: this.user.password,
+        }),
+      })
+        .then(
+          (response) => {
+            const result = response.content.toJSON();
+            ApplicationSettings.setString("token", result.jwt);
+            ApplicationSettings.setNumber("userID", result.user.id);
+            // userData object to string
+            ApplicationSettings.setString("userData", JSON.stringify(result.user));
+          },
+          (e) => {
+            console.error("auth/local error :", e);
+          }
+        )
+        .then(() => {
+          this.$navigateTo(welcome);
+        });
+    },
   },
 };
 </script>

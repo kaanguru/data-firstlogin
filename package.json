@@ -7,11 +7,11 @@
   "scripts": {
     "dev": "tns debug android",
     "devn": "tns debug android --no-hmr",
-    "un": "adb uninstall com.cemkaan.application",
-    "cl": "adb shell pm clear com.cemkaan.application"
+    "un": "adb uninstall com.cemkaan.apollolist",
+    "cl": "adb shell pm clear com.cemkaan.apollolist"
   },
   "nativescript": {
-    "id": "com.cemkaan.application",
+    "id": "com.cemkaan.apollolist",
     "templateVersion": "v2",
     "tns-android": {
       "version": "6.5.0"
