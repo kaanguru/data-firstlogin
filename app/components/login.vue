@@ -66,8 +66,10 @@ export default {
             const result = response.content.toJSON();
             ApplicationSettings.setString("token", result.jwt);
             ApplicationSettings.setNumber("userID", result.user.id);
+            this.$store.commit("setUserID",  result.user.id);
             // userData object to string
             ApplicationSettings.setString("userData", JSON.stringify(result.user));
+            
           },
           (e) => {
             console.error("auth/local error :", e);

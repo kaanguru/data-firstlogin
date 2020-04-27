@@ -24,7 +24,7 @@ export default {
   data() {
     return {
       userData: JSON.parse(ApplicationSettings.getString("userData")),
-      userID: ApplicationSettings.getNumber("userID"),
+      userID: this.$store.state.userID,
     };
   },
   methods: {
