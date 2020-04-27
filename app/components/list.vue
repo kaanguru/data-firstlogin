@@ -1,8 +1,8 @@
 <template>
   <Page>
     <ActionBar title="list" />
-    <GridLayout rows="90,90,*" columns="*">
-      <Label text="list of birds" class="h1" row="0" />
+    <GridLayout rows="90,90,*" columns="*" class="p-5">
+      <Label text="list of items" class="h1" row="0" />
       <Label v-if="$apollo.loading" text="loading" textWrap="true" class="h2" row="1" />
       <GridLayout v-else columns="*" rows="*" row="2">
         <ListView for="bird in birds">
@@ -22,7 +22,6 @@
 import gql from "graphql-tag";
 import * as ApplicationSettings from "tns-core-modules/application-settings";
 
-const userId = ApplicationSettings.getNumber("userID");
 
 export default {
   data() {
@@ -32,7 +31,8 @@ export default {
         id: null,
         isim: "",
         bilezik: ""
-      }
+      },
+      userId: ApplicationSettings.getNumber("userID")
     };
   },
 
@@ -49,7 +49,7 @@ export default {
       `,
       variables() {
         return {
-          userId: userId,
+          userId: this.userId,
         };
       },
     },

@@ -13,10 +13,8 @@
               autocapitalizationType="none"
               v-model="user.identifier"
               returnKeyType="next"
-              @returnPress="focusPassword"
             ></TextField>
           </StackLayout>
-
           <StackLayout row="1" class="input-field">
             <TextField
               class="nt-input -rounded m-t-10 -border"
