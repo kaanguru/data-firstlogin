@@ -30,6 +30,7 @@ export default {
   methods: {
     gotoList() {
       this.$navigateTo(list);
+      console.log('this.userID :>> ', this.userID);
     },
   },
 };
