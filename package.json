@@ -13,10 +13,10 @@
   "nativescript": {
     "id": "com.cemkaan.apollolist",
     "templateVersion": "v2",
-    "tns-android": {
+    "tns-ios": {
       "version": "6.5.0"
     },
-    "tns-ios": {
+    "tns-android": {
       "version": "6.5.0"
     }
   },

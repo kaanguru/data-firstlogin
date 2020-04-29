@@ -1,11 +1,12 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import * as ApplicationSettings from "tns-core-modules/application-settings";
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    userID: Number,
+    userID: ApplicationSettings.getNumber("userID"),
 
   },
   mutations: {
